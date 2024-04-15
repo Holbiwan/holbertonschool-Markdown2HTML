@@ -1,9 +1,9 @@
 #!/usr/bin/python3
 """
-Write a script markdown2html.py that takes an argument 2 strings:
+Write a script markdown2html.py that takes two string arguments:
 
-First argument is the name of the Markdown file
-Second argument is the output file name
+    First argument is the name of the Markdown file
+    Second argument is the output file name
 """
 
 import sys
@@ -16,7 +16,7 @@ def parse_heading(line):
     ''' Parse and convert Markdown headings to HTML '''
     heading_num = len(line) - len(line.lstrip('#'))
     if 1 <= heading_num <= 6:
-        return f'<h{heading_num}>{line.strip("#").strip()}</h{heading_num}>\n'
+        return f'<h{heading_num}>{line.lstrip("#").strip()}</h{heading_num}>\n'
     return line
 
 
@@ -68,7 +68,6 @@ def parse_special_cases(line):
 def convert_markdown_to_html(markdown_file, html_file):
     ''' Convert Markdown file to HTML '''
     with open(markdown_file) as md, open(html_file, 'w') as html:
-        unordered_start, ordered_start, paragraph = False, False, False
         for line in md:
             line = parse_heading(line)
             line = parse_unordered_list(line)
