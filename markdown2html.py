@@ -68,6 +68,7 @@ def parse_special_cases(line):
 def convert_markdown_to_html(markdown_file, html_file):
     ''' Convert Markdown file to HTML '''
     with open(markdown_file) as md, open(html_file, 'w') as html:
+        unordered_start, ordered_start, paragraph = False, False, False
         for line in md:
             line = parse_heading(line)
             line = parse_unordered_list(line)
